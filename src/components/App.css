@@ -1,0 +1,22 @@
+.navHeader{
+    background: linear-gradient(90deg, #672280 1.18%, #A626D3 100%);
+    /* background-color: aqua; */
+}
+
+.form-input{
+    width: 45%;
+    margin: 1rem;
+    height: 3rem;
+    border: 2px solid black;
+    border-radius: 1rem;
+    text-align: center;
+}
+
+.btn-meme{
+    height: 3rem;
+    text-align: center;
+    border-radius: 1rem;
+    font-weight: 500;
+    color: rgb(12, 13, 14);
+    margin: 1rem;
+}
