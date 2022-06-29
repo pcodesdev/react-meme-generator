@@ -20,3 +20,16 @@
     color: rgb(12, 13, 14);
     margin: 1rem;
 }
+
+.picimage {
+    color: rgba(107, 40, 40, 0);
+    background: 
+      linear-gradient(90deg,#3c7588 50%,#000 0) 
+      var(--_p,100%)/200% no-repeat;
+    -webkit-background-clip: image;
+            background-clip: image;
+    transition: .4s;
+  }
+  .picimage:hover {
+    --_p: 0%;
+  }
