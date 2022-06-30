@@ -33,3 +33,6 @@
   .picimage:hover {
     --_p: 0%;
   }
+  .d-img{
+    align-items: center;
+  }

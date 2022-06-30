@@ -1,44 +1,36 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import "./App.css";
 
+// import { FaPlus,FaMinus } from 'react-icons/fa';
+
 function Challenge(){
-    // function greetings(personName){
-    //     const date=new Date();
-    //     let hours=date.getHours();
-    //     console.log(hours)
-    //     if(hours>=4&&hours<12){
-    //         console.log( `Good morning ${personName}`)
-    //     }else if(hours>=12&&hours<17){
-    //         console.log( `Good afternoon ${personName}`)
-    //     }else if(hours>=17&&hours<20){
-    //         console.log( `Good evening ${personName}`)
-    //     }else
-    //         console.log( `Good night ${personName}`)
-        
-    //  }
-    // greetings("Peter")
+  
 
-    const results=React.useState("Yes")
-    const [result, setResult]=results
+    const [thingsArray,setThingsArray] =useState(["Thing 1", "Thing 2"]) 
     
-    
-    console.log(result);
-
-    function handleClick(){
-        return(
-            setResult('No')
-        )
+    function addItem(){
+        setThingsArray(prevThingsArray=>{
+            return [...prevThingsArray,`Thing ${prevThingsArray.length+1}`]})
     }
+
+
+    const thingsElements = thingsArray.map(thing => <p key={thing}>{thing}</p>)
+    
 
     return(
         <div className="container">
-        <div onClick={handleClick} className="col m-3 ">
-        
-          <h1 className="bg-primary text-center rounded-circle p-5" style={{width:'10rem', height:'10rem'}}>
-          {result}</h1>
-            
-        </div>
+        <div  className="col m-3 d-flex ">
+       
+      
+      <div>
+        <button onClick={addItem} className='btn btn-danger'>
+            Add Items
+        </button>
+        {thingsElements}
+      </div>
+       
+       </div>
         </div>
     )
 
