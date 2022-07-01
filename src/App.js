@@ -6,14 +6,15 @@ import './App.css';
 
 import Navbar from './components/Navbar';
 import Form from './components/Form';
-import Challenge from './components/challenges';
+// import Challenge from './components/challenges/Couner';
+import Counter from './components/challenges/Counter';
 
 function App() {
   return (
     <div className="App">
      <Navbar/>
      <Form/>
-     <Challenge/>
+     <Counter/>
     </div>
   );
 }

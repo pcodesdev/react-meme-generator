@@ -8,14 +8,21 @@ import memesData from './data/memesData';
 
 function Form(){
 
-    const memeImage=useState('')
-    const [image,setImage] = memeImage
+    const [meme,setMeme] =useState({
+        topText:'',
+        bottomText:'',
+        randomImage:'http://i.imgflip.com/1bij.jpg',
+    })
+
+    const [allMemeImages,setAllMemeImages] = useState(memesData)
 
     function getMemeImage(){
-        const dataArray =memesData.data.memes
+        const dataArray =allMemeImages.data.memes
   const randomMeme= dataArray[Math.floor(Math.random() * dataArray.length)];
-  const {url}=randomMeme
-  setImage(url)
+  const {url}= randomMeme
+  setMeme(prevMeme=>({...prevMeme,
+    randomImage: url
+}))
  
     }
     return(
@@ -26,7 +33,7 @@ function Form(){
 <div className="d-grid">
  <button className='btn btn-info btn-meme' onClick={getMemeImage}>Get a new meme image <FaImage/></button>
  <div  className="d-img" >
-    <img className="" style={{width: '100%',}}  src={image} alt=""></img>
+    <img className="" style={{width: '100%',}}  src={meme.randomImage} alt=""></img>
 </div>
 </div>
 
