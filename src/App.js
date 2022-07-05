@@ -7,7 +7,6 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Form from './components/Form';
 import Challenge from './components/challenges/challenges';
-// import Counter from './components/challenges/Counter';
 
 function App() {
   return (

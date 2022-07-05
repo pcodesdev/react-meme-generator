@@ -1,59 +1,70 @@
 import React, {useState} from "react"
 
+// import boxes from "./boxes";
+
 import './App.css'
 
 
 
-import Star from './Star.js';
+// import Star from './Star.js';
 
-import image1 from "./../img-1.jpg";
+// import image1 from "./../img-1.jpg";
+
+const boxes=[  {
+    id: 1,
+    on: true
+},   
+{
+    id: 2,
+    on: false
+},   
+{
+    id: 3,
+    on: true
+},   
+{
+    id: 4,
+    on: true
+},   
+{
+    id: 5,
+    on: false
+},   
+{
+    id: 6,
+    on: false
+},]
 
 export default function Challenge() {
-    const [contact, setContact] = useState({
-        firstName: "John",
-        lastName: "Doe",
-        phone: "+1 (719) 555-1212",
-        email: "itsmyrealname@example.com",
-        isFavorite: false
-    })
-    
-    /**
-     * Challenge: Move the star image into its own component (Star)
-     * - It should receive a prop called `isFilled` that it
-     *   uses to determine which icon it will display
-     * - Import and render that component, passing the value of
-     *   `isFavorite` to the new `isFilled` prop.
-     * - Don't worry about the abiliity to flip this value quite yet.
-     *   Instead, you can test if it's working by manually changing
-     *   `isFavorite` in state above.
-     */
-    
-    // let starIcon = contact.isFavorite ? <FaStarOfDavid/> : <FaStarOfLife/>
-    
-    function toggleFavorite() {
-        setContact(prevContact => ({
-            ...prevContact,
-            isFavorite: !prevContact.isFavorite
-        }))
+    const [box, setBox] = useState(boxes)
+    const boxColor=box.on?'#3d5885':'#0b1526'
+
+    function toggleColor(){
+        setBox(boxColor=>!boxColor)
     }
+
+   
+    
+    const boxesArray= box.map((boxItem)=>(
+        <div className="">
+        <div onClick={toggleColor} className="card box d-grid border-primary m-1" style={{width:'18rem',}} key={boxItem.id}></div>
+        </div>
+        )
+    )
+    console.log(boxesArray);
+
+    
+    // function toggleFavorite() {
+    //     setContact(prevContact => ({
+    //         ...prevContact,
+    //         isFavorite: !prevContact.isFavorite
+    //     }))
+    // }
     
     return (
-        <main>
-            <article className="card">
-                <img src={image1} className="card--image" />
-                <div className="card--info">
-                    
-                    <Star isFilled={contact.isFavorite}
-                        handleClick={toggleFavorite} />
-                    
-                    <h2 className="card--name">
-                        {contact.firstName} {contact.lastName}
-                    </h2>
-                    <p className="card--contact">{contact.phone}</p>
-                    <p className="card--contact">{contact.email}</p>
-                </div>
-                
-            </article>
-        </main>
+        <main className="row row-cols-1 row-cols-md-3 g-4"> 
+  {boxesArray}
+  </main>
+
     )
 }
