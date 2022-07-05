@@ -6,7 +6,7 @@ import './App.css'
 
 
 
-// import Star from './Star.js';
+import Star from './Star.js';
 
 // import image1 from "./../img-1.jpg";
 
@@ -35,23 +35,48 @@ const boxes=[  {
     on: false
 },]
 
+
+
 export default function Challenge() {
     const [box, setBox] = useState(boxes)
-    const boxColor=box.on?'#3d5885':'#0b1526'
+    // const boxColor=box.on=true
 
-    function toggleColor(){
-        setBox(boxColor=>!boxColor)
+
+    function toggleBox(id){
+        setBox(prevBox=>{
+            const newBoxes = []
+            for(let i=0; i<prevBox.length; i++){
+               const currentBox=prevBox[i]
+               if(currentBox.id===id){
+                const updatedBox ={
+                    ...currentBox,
+                    on:!currentBox.on,
+                } 
+                newBoxes.push(updatedBox)
+               }else{
+                newBoxes.push(currentBox)
+               }
+
+            }
+            return newBoxes
+        })
     }
+   
 
    
     
     const boxesArray= box.map((boxItem)=>(
-        <div className="">
-        <div onClick={toggleColor} className="card box d-grid border-primary m-1" style={{width:'18rem',}} key={boxItem.id}></div>
-        </div>
+        <Star 
+        key={boxItem.id}
+        id={boxItem.id}
+        on={boxItem.on}
+        handleClick={toggleBox}
+        
+            
+        />
         )
     )
-    console.log(boxesArray);
+   
 
     
     // function toggleFavorite() {
