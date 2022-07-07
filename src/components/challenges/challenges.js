@@ -7,6 +7,7 @@ import './App.css'
 
 
 import Star from './Star.js';
+import jokesData from "./data/jokesData";
 
 // import image1 from "./../img-1.jpg";
 
@@ -38,39 +39,29 @@ const boxes=[  {
 
 
 export default function Challenge() {
-    const [box, setBox] = useState(boxes)
+    // const [isShown,setIsShown] = useState(false)
     // const boxColor=box.on=true
 
 
-    function toggleBox(id){
-        setBox(prevBox=>{
-            const newBoxes = []
-            for(let i=0; i<prevBox.length; i++){
-               const currentBox=prevBox[i]
-               if(currentBox.id===id){
-                const updatedBox ={
-                    ...currentBox,
-                    on:!currentBox.on,
-                } 
-                newBoxes.push(updatedBox)
-               }else{
-                newBoxes.push(currentBox)
-               }
-
-            }
-            return newBoxes
-        })
-    }
+    // function toggleBox(id){
+    //     setBox(prevBox=>{
+           
+    //         return prevBox.map((square)=>{
+    //             return square.id===id?{...square,on:!square.on} : square;
+    //         })
+    //     })
+    // }
    
 
    
     
-    const boxesArray= box.map((boxItem)=>(
+    const jokesArray= jokesData.map((jokeItem)=>(
         <Star 
-        key={boxItem.id}
-        id={boxItem.id}
-        on={boxItem.on}
-        handleClick={toggleBox}
+        key={jokeItem.id}
+        
+        setup={jokeItem.setup}
+        punchline={jokeItem.punchline}
+        // handleClick={toggleBox}
         
             
         />
@@ -88,7 +79,7 @@ export default function Challenge() {
     
     return (
         <main className="row row-cols-1 row-cols-md-3 g-4"> 
-  {boxesArray}
+  {jokesArray}
   </main>
 
     )
