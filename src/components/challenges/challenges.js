@@ -55,18 +55,18 @@ export default function Challenge() {
 
    
     
-    const jokesArray= jokesData.map((jokeItem)=>(
-        <Star 
-        key={jokeItem.id}
+    // const jokesArray= jokesData.map((jokeItem)=>(
+    //     <Star 
+    //     key={jokeItem.id}
         
-        setup={jokeItem.setup}
-        punchline={jokeItem.punchline}
-        // handleClick={toggleBox}
+    //     setup={jokeItem.setup}
+    //     punchline={jokeItem.punchline}
+    //     // handleClick={toggleBox}
         
             
-        />
-        )
-    )
+    //     />
+    //     )
+    // )
    
 
     
@@ -76,11 +76,92 @@ export default function Challenge() {
     //         isFavorite: !prevContact.isFavorite
     //     }))
     // }
+
+    const [formData,setFormData]= useState({
+        firstName:"",
+        lastName:"",
+        email:"",
+        comments:"",
+        isFriendly:false,
+        employment:"",
+        favColor:"",
+    
+    }
+    )
+
+    console.log(formData.favColor);
+   
+
+    function handleChange(event) {
+        const {name,value,type,checked}=event.target
+        setFormData(prevFormData=>{
+            return{
+                ...prevFormData,
+                [name] : type==="checkbox" ?checked : value
+            }
+        })
+    }
+
+    
+
     
     return (
-        <main className="row row-cols-1 row-cols-md-3 g-4"> 
-  {jokesArray}
-  </main>
+    <form>
+    <div className="m-3">
+        <input type="text" placeholder="First Name" value={formData.firstName}    name="firstName"  onChange={handleChange} />
+        </div>
+        <div className="m-3">
+        <input type="text" placeholder="Last Name" value={formData.lastName}       name="lastName"  onChange={handleChange} />
+        </div>
+        <div className="m-3">
+        <input type="email" placeholder="Email" name="email" 
+        value={formData.email}  onChange={handleChange} />
+        </div>
+        <div className="m-3">
+        <textarea name="comments"
+        placeholder="Write your comments here...."
+        value={formData.comments}
+            onChange={handleChange}
+        />
+
+        </div>
+        <div className="m-3">
+        <input type="checkbox"  id="isFriendly" 
+        checked={formData.isFriendly} name="isFriendly" onChange={handleChange} />
+        <label htmlFor="isFriendly">Would you like to receive promotional emails?</label>
+        </div>
+        <div className="m-3">
+            <fieldset className="d-grid">
+                <legend>Current Employment Status</legend>
+                <input type="radio" id="unemployed" name="employment" value="unemployed"
+                    onChange={handleChange} checked={formData.employment==="unemployed"}
+                />
+                <label htmlFor="unemployed">Unemployed</label>
+                <input type="radio" id="part-time" name="employment" value="part-time"
+                    onChange={handleChange} checked={formData.employment==="part-time"}
+                />
+                <label htmlFor="part-time">Part Time</label>
+                <input type="radio" id="full-time" name="employment" value="full-time"
+                    onChange={handleChange} checked={formData.employment==="full-time"}
+                />
+                <label htmlFor="full-time">Full Time</label>
+            </fieldset>
+        </div>
+        <div>
+            <label htmlFor="best-color">Select Favorite Color</label>
+            <select name="favColor" id="best-color" onChange={handleChange}
+            value={formData.favColor}
+            >
+            <option value="">--Select--</option>
+                <option value="red">Red</option>
+                <option value="orange">Orange</option>
+                <option value="maroon">Maroon</option>
+                <option value="purple">Purple</option>
+                <option value="white">White</option>
+            </select>
+        </div>
+    </form>
+    
 
     )
 }
