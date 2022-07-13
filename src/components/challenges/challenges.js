@@ -7,7 +7,7 @@ import './App.css'
 
 
 import Star from './Star.js';
-import jokesData from "./data/jokesData";
+import jokesData from "../data/jokesData";
 
 // import image1 from "./../img-1.jpg";
 
@@ -89,7 +89,6 @@ export default function Challenge() {
     }
     )
 
-    console.log(formData.favColor);
    
 
     function handleChange(event) {
@@ -102,11 +101,17 @@ export default function Challenge() {
         })
     }
 
+    function handleSubmit(event) {
+        event.preventDefault()
+        console.log(formData);
+    }
+
+
     
 
     
     return (
-    <form>
+    <form onSubmit={handleSubmit}>
     <div className="m-3">
         <input type="text" placeholder="First Name" value={formData.firstName}    name="firstName"  onChange={handleChange} />
         </div>
@@ -159,6 +164,8 @@ export default function Challenge() {
                 <option value="purple">Purple</option>
                 <option value="white">White</option>
             </select>
+            <br />
+            <button>Submit</button>
         </div>
     </form>
     
