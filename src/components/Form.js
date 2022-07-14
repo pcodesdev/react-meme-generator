@@ -18,18 +18,22 @@ function Form(){
     const [allMemes,setAllMemes]= useState([])
 
     useEffect(() => {
-        fetch("https://api.imgflip.com/get_memes").then((res)=>res.json().then((meme)=>setAllMemes( meme.data.memes)))
-    },[])
-    const [allMemeImages,setAllMemeImages] = useState(memesData)
-
-    function getMemeImage(){
-        
-  const randomMeme= allMemes[Math.floor(Math.random() * allMemes.length)];
-  const {url}= randomMeme
-  setMeme(prevMeme=>({...prevMeme,
-    randomImage: url
-}))
- 
+        async function getMemes() {
+            const res = await fetch("https://api.imgflip.com/get_memes")
+            const data = await res.json()
+            setAllMemes(data.data.memes)
+        }
+        getMemes()
+    }, [])
+    
+    // const [allMemeImages,setAllMemeImages] = useState(memesData)
+    function getMemeImage() {
+        const randomNumber = Math.floor(Math.random() * allMemes.length)
+        const url = allMemes[randomNumber].url
+        setMeme(prevMeme => ({
+            ...prevMeme,
+            randomImage: url
+        }))
     }
 
     function handleChange(event) {

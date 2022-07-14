@@ -1,31 +1,23 @@
-import React, {useState} from 'react';
+import React, {useState ,useEffect} from "react"
 
-// import { FaStarOfDavid,FaStarOfLife    } from 'react-icons/fa';
 
-function Star(props){
-   
 
-    const [isShown,setIsShown]= useState(false)
-    const bgColor =props.on?'#118ab2':'#5F6A62';
+export default function WindowTracker() {
 
-    // function setToggle(){
-    //     setOn(prevOn=>!prevOn)
-    // }
+    const [windowWidth,setWindowWidth]= useState(window.innerWidth)
 
-    function toggleShown(){
-        setIsShown(prevShown=>!prevShown)
-       
-    }
-    return(
-        
-        <div>
-        {props.setup && <h3>{props.setup}</h3>}
-        {isShown && <p>{props.punchline}</p>}
-        <button onClick={toggleShown} className='btn btn-warning'>{isShown==false?'Show Punchline':'Hide Punchline'  }</button>
-        
-        <hr />
-    </div>
-       
+    useEffect(() => {
+        function watchWidth(){
+            setWindowWidth(window.innerWidth)
+        }
+        window.addEventListener("resize", watchWidth)
+
+        return function(){
+            window.removeEventListener("resize", watchWidth)
+        }
+    }, [])
+
+    return (
+        <h1>Window width: {windowWidth}</h1>
     )
 }
-export default Star
